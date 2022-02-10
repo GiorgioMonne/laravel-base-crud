@@ -18,10 +18,13 @@
                 @foreach ($products as $product)
     
                 <tr>
+                    <th>{{$product->id}}</th>
                     <th>{{$product->title}}</th>
                     <th>{{$product->type}}</th>
                     <th>{{$product->description}}</th>
                     <th>{{$product->series}}</th>
+
+                    <th><a href="{{route("products.show", $product->id)}}"><button type="button" class="btn btn-primary">Cerca</button></a></th>
                 </tr>
     
                 @endforeach

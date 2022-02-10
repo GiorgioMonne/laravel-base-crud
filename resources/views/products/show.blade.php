@@ -9,6 +9,10 @@
         <p>{{!!$product->description!!}}</p>
 
         <h5>Costo Fumetto :{{$product->price}} $</h5>
+
+        <div>
+            <a href="{{route("products.index")}}"><button type="button" class="btn btn-primary">Torna indietro</button></a>
+        </div>
     </div>
     
 @endsection
