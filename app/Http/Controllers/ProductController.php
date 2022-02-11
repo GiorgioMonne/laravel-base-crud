@@ -90,9 +90,24 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $data = $request->all();
+
+            $product->title = $data["title"];
+            $product->type = $data["type"];
+            $product->series = $data["series"];
+            $product->sale_date = $data["sale_date"];;
+            $product->description = $data["description"];
+            $product->price = $data["price"];
+
+            if(!empty($data['image'])){
+                $product->image = $data["image"];
+            }
+
+            $product->save();
+
+        return redirect()->route("products.show", $product->id);
     }
 
     /**
