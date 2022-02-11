@@ -26,7 +26,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view("products.create");
     }
 
     /**
@@ -37,7 +37,26 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+            $data = $request->all();
+
+            $newProduct = new Product();
+
+            $newProduct->title = $data["title"];
+            $newProduct->type = $data["type"];
+            $newProduct->series = $data["series"];
+            $newProduct->sale_date = $data["sale_date"];;
+            $newProduct->description = $data["description"];
+            $newProduct->price = $data["price"];
+
+            if(!empty($data['image'])){
+                $newProduct->image = $data["image"];
+            }
+
+            $newProduct->save();
+
+
+            return redirect()->route('products.show', $newProduct->id);
     }
 
     /**
@@ -59,9 +78,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        return view("products.edit", compact("product"));
     }
 
     /**

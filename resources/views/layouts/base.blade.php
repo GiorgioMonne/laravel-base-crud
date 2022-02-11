@@ -9,20 +9,13 @@
 </head>
 <body>
 
-    <h1>COMICS BELLI</h1>
-
     @yield('pageContent')
     
 </body>
 </html>
 
 <style>
-
-body{
-    text-align: center;
-}
-
-h1{
-    font-weight: bold
-}
+     body{
+        text-align: center
+    }
 </style>

@@ -2,7 +2,10 @@
 
 @section('pageContent')
 
-    <div class="container">
+    <h1>LISTA FUMETTI</h1>
+    <a href="{{route("products.create")}}"><button type="button" class="btn btn-success">Aggiungi un nuovo comic</button></a>
+
+    <div class="container mt-5">
         <table class="table">
             <thead>
               <tr>
