@@ -27,7 +27,19 @@
                     <th>{{$product->description}}</th>
                     <th>{{$product->series}}</th>
 
-                    <th><a href="{{route("products.show", $product->id)}}"><button type="button" class="btn btn-primary">Cerca</button></a></th>
+                    <th><a href="{{route("products.show", $product->id)}}"><button type="button" class="btn btn-primary">Visualizza</button></a></th>
+                    <th><a href="{{route("products.edit", $product->id)}}"><button type="button" class="btn btn-primary">Modifica</button></a></th>
+                    
+                    <th>
+                        <form action="{{route('products.destroy', $product->id)}}" method="POST">
+                        
+                        @csrf
+                        @method("DELETE")
+                        <button type="submit" class="btn btn-danger">Elimina</button>
+
+                        </form>
+                    </th>
+
                 </tr>
     
                 @endforeach
