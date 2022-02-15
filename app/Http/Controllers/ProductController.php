@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Product;
 
 class ProductController extends Controller
@@ -44,11 +45,11 @@ class ProductController extends Controller
                 "title" => "required|string|max:80|unique:products",
                 "type" =>[
                     "required",
-                    //  Rule::in(["book","novel"])
+                     Rule::in(["book","novel"])
                     // non capisco perchè non faccia
                 ],
                 "series" => "required|string|max:80",
-                "sale_date" => "required|date",
+                "sale_date" => "required",
                 "description" => "required|string",
                 "price" => "required|integer|min:1|max:100000",
                 "image" => "nullable|url"
