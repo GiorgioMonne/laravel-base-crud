@@ -21,9 +21,22 @@
 
             <div class="form-group">
                 <label for="type">Tipo fumetto</label>
-                <select class="form-control @error("type") is-invalid @enderror" id="type" name="type"  placeholder="Tipologia fumetto" value="{{old("type") ? old("type") : $product->type}}">
-                    <option value="book" {{$product->type == "book" ? "selected" : ""}}>Comic Book</option>
-                    <option value="novel" {{$product->type == "novel" ? "selected" : ""}}>Graphic Novel </option>
+                <select class="form-control @error("type") is-invalid @enderror" id="type" name="type"  placeholder="Tipologia fumetto" >
+
+                    {{-- @if (old("type"))
+                        <option value="book" {{old("type") == "book" ? "selected" : ""}}>Comic Book</option>
+                        <option value="novel" {{old("type")== "novel" ? "selected" : ""}}>Graphic Novel </option>
+                    @endif
+                        <option value="book" {{$product->type == "book" ? "selected" : ""}}>Comic Book</option>
+                        <option value="novel" {{$product->type == "novel" ? "selected" : ""}}>Graphic Novel </option> --}}
+
+                    @php
+                        $selected = old("type") ? old("type") : $product->type;
+                    @endphp
+                        <option value="book" {{$selected== "book" ? "selected" : ""}}>Comic Book</option>
+                        <option value="novel" {{$selected== "novel" ? "selected" : ""}}>Graphic Novel </option>
+
+                        
                 </select>
                 @error('type')
                     <div class="alert alert-danger">{{$message}}</div>
