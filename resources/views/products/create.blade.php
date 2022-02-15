@@ -48,9 +48,19 @@
             </div>
             
             <button type="submit" class="btn btn-primary">Crea</button>
+
+            <a href="{{route("products.index")}}"><button type="button" class="btn btn-secondary">Torna indietro</button></a>
         </form>
 
-        <a href="{{route("products.index")}}"><button type="button" class="btn btn-secondary">Torna indietro</button></a>
+        @if ($errors->any())
+
+            <div class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+                @endforeach
+            </div>
+            
+        @endif
         
     </div>
 @endsection

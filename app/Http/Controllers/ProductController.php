@@ -40,20 +40,37 @@ class ProductController extends Controller
 
             $data = $request->all();
 
-            $newProduct = new Product();
+            $request->validate([
+                "title" => "required|string|max:80|unique:products",
+                "type" =>[
+                    "required",
+                    //  Rule::in(["book","novel"])
+                    // non capisco perchè non faccia
+                ],
+                "series" => "required|string|max:80",
+                "sale_date" => "required|date",
+                "description" => "required|string",
+                "price" => "required|integer|min:1|max:100000",
+                "image" => "nullable|url"
+            ]
+            );
 
-            $newProduct->title = $data["title"];
-            $newProduct->type = $data["type"];
-            $newProduct->series = $data["series"];
-            $newProduct->sale_date = $data["sale_date"];;
-            $newProduct->description = $data["description"];
-            $newProduct->price = $data["price"];
+            $newProduct = Product::create($data);
 
-            if(!empty($data['image'])){
-                $newProduct->image = $data["image"];
-            }
+            // $newProduct = new Product();
 
-            $newProduct->save();
+            // $newProduct->title = $data["title"];
+            // $newProduct->type = $data["type"];
+            // $newProduct->series = $data["series"];
+            // $newProduct->sale_date = $data["sale_date"];;
+            // $newProduct->description = $data["description"];
+            // $newProduct->price = $data["price"];
+
+            // if(!empty($data['image'])){
+            //     $newProduct->image = $data["image"];
+            // }
+
+            // $newProduct->save();
 
 
             return redirect()->route('products.show', $newProduct->id);

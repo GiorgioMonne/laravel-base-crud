@@ -19,8 +19,8 @@
             <div class="form-group">
                 <label for="type">Tipo fumetto</label>
                 <select class="form-control" id="type" name="type"  placeholder="Tipologia fumetto" value="{{$product->type}}">
-                    <option value="comic book" {{$product->type == "comic book" ? "selected" : ""}}>Comic Book</option>
-                    <option value="graphic novel" {{$product->type == "graphic novel" ? "selected" : ""}}>Graphic Novel </option>
+                    <option value="book" {{$product->type == "book" ? "selected" : ""}}>Comic Book</option>
+                    <option value="novel" {{$product->type == "novel" ? "selected" : ""}}>Graphic Novel </option>
                 </select>
             </div>
 
