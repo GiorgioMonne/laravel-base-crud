@@ -49,7 +49,7 @@ class ProductController extends Controller
                     // non capisco perchè non faccia
                 ],
                 "series" => "required|string|max:80",
-                "sale_date" => "required",
+                "sale_date" => "required|date",
                 "description" => "required|string",
                 "price" => "required|integer|min:1|max:100000",
                 "image" => "nullable|url"
@@ -112,16 +112,20 @@ class ProductController extends Controller
     {
         $data = $request->all();
 
-            $product->title = $data["title"];
-            $product->type = $data["type"];
-            $product->series = $data["series"];
-            $product->sale_date = $data["sale_date"];;
-            $product->description = $data["description"];
-            $product->price = $data["price"];
-
-            if(!empty($data['image'])){
-                $product->image = $data["image"];
-            }
+        $request->validate([
+            "title" => "required|string|max:80|unique:products,title,{$product->id}",
+            "type" =>[
+                "required",
+                 Rule::in(["book","novel"])
+                // non capisco perchè non faccia
+            ],
+            "series" => "required|string|max:80",
+            "sale_date" => "required|date",
+            "description" => "required|string",
+            "price" => "required|integer|min:1|max:100000",
+            "image" => "nullable|url"
+        ]
+        );
 
             $product->save();
 

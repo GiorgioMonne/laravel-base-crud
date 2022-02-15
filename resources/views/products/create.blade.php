@@ -11,7 +11,7 @@
             @csrf
             <div class="form-group">
                 <label for="title">Titolo</label>
-                <input type="text" class="form-control " id="title"  name="title"  placeholder="Inserisci il fumetto" value="{{old("title")}}">
+                <input type="text" class="form-control @error("title") is-invalid @enderror" id="title"  name="title"  placeholder="Inserisci il fumetto" value="{{old("title")}}">
                 @error('title')
                     <div class="alert alert-danger">{{$message}}</div>
                 @enderror
@@ -73,7 +73,7 @@
             <a href="{{route("products.index")}}"><button type="button" class="btn btn-secondary">Torna indietro</button></a>
         </form>
 
-        @if ($errors->any())
+        {{-- @if ($errors->any())
 
             <div class="alert alert-danger">
                 @foreach ($errors->all() as $error)
@@ -81,7 +81,7 @@
                 @endforeach
             </div>
             
-        @endif
+        @endif --}}
         
     </div>
 @endsection
